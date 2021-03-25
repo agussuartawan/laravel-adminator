@@ -82,6 +82,14 @@
                 </li>
             @endcan
             <li class="nav-item">
+                <a href="{{ route('customer.index') }}" class="nav-link">
+                    <span class="icon-holder">
+                        <i class="nav-icon fas fa-user"></i>
+                    </span>
+                    <span class="title">Customer</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                     <span class="icon-holder">
                         <i class="nav-icon fas fa-fw fa-sign-out-alt"></i>

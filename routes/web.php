@@ -19,3 +19,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('users', 'UsersController');
 
 });
+
+//Customers
+Route::get('customers', 'CustomersController@index')->name('customer.index');
