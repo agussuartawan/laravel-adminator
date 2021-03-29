@@ -12,7 +12,7 @@
                             </div>
                             <div class="peer peer-greed">
                                 <h5 class="lh-1 mB-0 logo-text">
-                                    {{ trans('panel.site_title') }}
+                                    {{ config('app.name') }}
                                 </h5>
                             </div>
                         </div>
