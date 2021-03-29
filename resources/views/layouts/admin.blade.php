@@ -5,7 +5,6 @@
     {{-- head tag (include meta,title,style) --}}
     @include('partials.head')
 
-<<<<<<< HEAD
     <title>{{ config('app.name') }}</title>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet" />
@@ -17,9 +16,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
-=======
+    
     {{-- another styles here --}}
->>>>>>> b1495c9afa9554c684504576592a9b0d9beb08c1
     @stack('styles')
 
 </head>

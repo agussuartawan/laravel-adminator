@@ -13,7 +13,7 @@ class CustomersController extends Controller
      */
     public function index()
     {
-        return view('admin.customers.index');
+        return view('customers.index');
     }
 
     /**
