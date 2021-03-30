@@ -7,6 +7,6 @@
         var loader = document.getElementById('loader');
         setTimeout(function() {
             loader.classList.add('fadeOut');
-        }, 100);
+        });
     });
 </script>

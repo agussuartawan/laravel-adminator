@@ -5,7 +5,7 @@
             <h4 class="c-grey-900 mB-30">{{ $title }}</h4>
         </div>
         <div class="col-4">
-            <button class="btn btn-primary float-right">
+            <button class="btn btn-primary float-right" id="add">
                 <i class="fas fa-plus"></i>
                 Tambah
             </button>
@@ -41,7 +41,7 @@
 @push('scripts')
     <script type="text/javascript">
         $(document).ready( function () {
-            $('.btn').click(function(event) {
+            $('#add').click(function(event) {
                 event.preventDefault();
                 $('#modal').modal('show');
             });

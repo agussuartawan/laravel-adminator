@@ -58,7 +58,7 @@
                     <li class="nav-item">
                         <a href="{{ route('product.index') }}" class="nav-link">
                             <span class="icon-holder">
-                                <i class="fas fa-wine-glass-alt"></i>
+                                <i class="fas fa-glass-martini-alt"></i>
                             </span>
                             <span class="title">Product</span>
                         </a>
@@ -110,7 +110,7 @@
                     <ul class="dropdown-menu">
                         @can('permission_access')
                             <li>
-                                <a href="{{ route("admin.permissions.index") }}" class="sidebar-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                                <a href="{{ route("admin.permissions.index") }}" class="sidebar-link {{ request()->is('admin/permissions')  ? 'active' : '' }}">
                                     <i class="fa-fw fas fa-unlock-alt nav-icon">
 
                                     </i>
@@ -120,7 +120,7 @@
                         @endcan
                         @can('role_access')
                             <li>
-                                <a href="{{ route("admin.roles.index") }}" class="sidebar-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
+                                <a href="{{ route("admin.roles.index") }}" class="sidebar-link {{ request()->is('admin/roles')  ? 'active' : '' }}">
                                     <i class="fa-fw fas fa-briefcase nav-icon">
 
                                     </i>
@@ -130,7 +130,7 @@
                         @endcan
                         @can('user_access')
                             <li>
-                                <a href="{{ route("admin.users.index") }}" class="sidebar-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
+                                <a href="{{ route("admin.users.index") }}" class="sidebar-link {{ request()->is('admin/users')  ? 'active' : '' }}">
                                     <i class="fa-fw fas fa-user nav-icon">
 
                                     </i>

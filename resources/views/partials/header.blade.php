@@ -1,16 +1,22 @@
 <div class="header navbar">
     <div class="header-container">
-        <ul class="nav-left">
-           <li>
-               <a href="#" id="sidebar-toggle" class="sidebar-toggle">
-                   <i class="ti-menu"></i>
-               </a>
-           </li>
-            <a href="{{ route('penjualan.create') }}" class="btn btn-outline-info mt-2">
-                <i class="fas fa-shopping-cart"></i>
-                Jual
-            </a>
-        </ul>
+        <div class="row">
+            <div class="col-8">
+                <ul class="nav-left">
+                   <li>
+                       <a href="#" id="sidebar-toggle" class="sidebar-toggle">
+                           <i class="ti-menu"></i>
+                       </a>
+                   </li>
+                </ul>
+            </div>
+            <div class="col-4">
+                <a href="{{ route('penjualan.create') }}" class="btn btn-outline-info mt-3 mr-3 float-right">
+                   <i class="fas fa-shopping-cart"></i>
+                   Jual
+                </a>
+            </div>
+        </div>
         {{-- <ul class="nav-right">
             @if(count(config('panel.available_languages', [])) > 1)
                 <li class="">

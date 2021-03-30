@@ -84,4 +84,9 @@ class CustomersController extends Controller
     {
         //
     }
+
+    public function find($search)
+    {
+        return $search;
+    }
 }

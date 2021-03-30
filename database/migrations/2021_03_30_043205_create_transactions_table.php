@@ -18,7 +18,9 @@ class CreateTransactionsTable extends Migration
             $table->integer('customers_id');
             $table->string('no_transaksi');
             $table->double('grand_total');
+            $table->string('terms');
             $table->date('tanggal');
+            $table->date('overdue');
             $table->timestamps();
         });
     }
