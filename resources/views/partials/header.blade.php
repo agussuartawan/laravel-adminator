@@ -6,6 +6,10 @@
                    <i class="ti-menu"></i>
                </a>
            </li>
+            <a href="{{ route('penjualan.create') }}" class="btn btn-outline-info mt-2">
+                <i class="fas fa-shopping-cart"></i>
+                Jual
+            </a>
         </ul>
         {{-- <ul class="nav-right">
             @if(count(config('panel.available_languages', [])) > 1)

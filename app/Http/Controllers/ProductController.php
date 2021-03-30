@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Customer;
+use App\Product;
 
-class CustomersController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class CustomersController extends Controller
      */
     public function index()
     {
-        $title = 'Data Customer';
-        $customers = Customer::all();
-        return view('customers.index', compact('customers','title'));
+        $title = 'Data Produk';
+        $products = Product::all();
+        return view ('product.index', compact('products','title'));
     }
 
     /**

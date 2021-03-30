@@ -22,3 +22,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
 //Customers
 Route::get('customers', 'CustomersController@index')->name('customer.index');
+
+//Products
+Route::get('product', 'ProductController@index')->name('product.index');
+
+//Transaction
+Route::get('penjualan', 'TransactionController@index')->name('penjualan.index');
+Route::get('penjualan/create', 'TransactionController@create')->name('penjualan.create');

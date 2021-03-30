@@ -14,20 +14,20 @@
     <table class="table table-striped table-bordered" id="dataTable" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <td>#</td>
+                <td>Kode</td>
                 <td>Nama</td>
-                <td>Alamat</td>
-                <td>Phone</td>
+                <td>Harga</td>
+                <td>Stok</td>
                 <td>Action</td>
             </tr>
         </thead>
         <tbody>
-            @foreach($customers as $customer)
+            @foreach($products as $product)
             <tr>
-                <td>{{ $customer->id }}</td>
-                <td>{{ $customer->name }}</td>
-                <td>{{ $customer->address }}</td>
-                <td>{{ $customer->phone }}</td>
+                <td>{{ $product->kode}}</td>
+                <td>{{ $product->nama }}</td>
+                <td>{{ $product->harga }}</td>
+                <td>{{ $product->stok }}</td>
                 <td></td>
             </tr>
             @endforeach

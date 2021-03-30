@@ -36,6 +36,66 @@
                     <span class="title">{{ trans('global.dashboard') }}</span>
                 </a>
             </li>
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="#">
+                    <span class="icon-holder">
+                        <i class="fas fa-database"></i>
+                    </span>
+                    <span class="title">Master</span>
+                    <span class="arrow">
+                        <i class="ti-angle-right"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item">
+                        <a href="{{ route('customer.index') }}" class="nav-link">
+                            <span class="icon-holder">
+                                <i class="nav-icon fas fa-user"></i>
+                            </span>
+                            <span class="title">Customer</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('product.index') }}" class="nav-link">
+                            <span class="icon-holder">
+                                <i class="fas fa-wine-glass-alt"></i>
+                            </span>
+                            <span class="title">Product</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="#">
+                    <span class="icon-holder">
+                        <i class="fas fa-shopping-cart"></i>
+                    </span>
+                    <span class="title">Penjualan</span>
+                    <span class="arrow">
+                        <i class="ti-angle-right"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item">
+                        <a href="{{ route('penjualan.create') }}" class="nav-link">
+                            <span class="icon-holder">
+                                <i class="nav-icon fas fa-user"></i>
+                            </span>
+                            <span class="title">Transaksi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('penjualan.index') }}" class="nav-link">
+                            <span class="icon-holder">
+                                <i class="fas fa-table"></i>
+                            </span>
+                            <span class="title">Data Penjualan</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
             @can('user_management_access')
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle" href="#">
@@ -81,14 +141,7 @@
                     </ul>
                 </li>
             @endcan
-            <li class="nav-item">
-                <a href="{{ route('customer.index') }}" class="nav-link">
-                    <span class="icon-holder">
-                        <i class="nav-icon fas fa-user"></i>
-                    </span>
-                    <span class="title">Customer</span>
-                </a>
-            </li>
+
             <li class="nav-item">
                 <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                     <span class="icon-holder">
