@@ -143,7 +143,7 @@
 		    //seelct2 ajax untuk input pelanggan
 		    $('#pelanggan').select2({
 		    	ajax: {
-		    		url: {{ route('find.customer') }},
+		    		url: '{{ route("find.customer") }}',
 		    		dataType: 'json',
 		    		type: 'post',
 		    		delay: 250,
@@ -154,13 +154,15 @@
 		    		},
 		    		proccessResults: function(data){
 		    			return {
-		    				results: data
+		    				results: data.results
 		    			}
-		    		}
+						console.log(data);
+		    		},
 		    		cache: true
 		    	},
 		    	placeholder: 'Cari pelanggan',
-		    	allowClear: true
+		    	allowClear: true,
+				minimumInputLength: 1,
 		    });
 	    });
   	</script>
