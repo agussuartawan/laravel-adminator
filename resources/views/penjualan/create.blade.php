@@ -145,18 +145,18 @@
 		    	ajax: {
 		    		url: '{{ route("find.customer") }}',
 		    		dataType: 'json',
-		    		type: 'post',
+		    		type: 'get',
 		    		delay: 250,
 		    		data: function(params){
 		    			return {
 		    				search: params.term
 		    			}
 		    		},
-		    		proccessResults: function(data){
-		    			return {
-		    				results: data.results
-		    			}
+		    		processResults: function(data){
 						console.log(data);
+		    			return {
+		    				results: data
+		    			}
 		    		},
 		    		cache: true
 		    	},

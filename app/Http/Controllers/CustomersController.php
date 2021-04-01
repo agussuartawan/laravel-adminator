@@ -95,9 +95,6 @@ class CustomersController extends Controller
                 'text' => $d->name
             );
         }
-        $hasil[] = array(
-            'results' => $results
-        );
-        return response()->json($hasil);
+        return response()->json($results);
     }
 }
