@@ -87,12 +87,27 @@ class CustomersController extends Controller
 
     public function find(Request $request)
     {
-        // dd($request->search);
-        $data = Customer::select("id", "name")->where("name", "LIKE", "%{$request->search}%")->get();
+        $search = $request->search;
+        if ($search == '') {
+            $data = Customer::orderBy('id', 'desc')
+                                ->select('id', 'name', 'address', 'email')
+                                ->limit(5)
+                                ->get();
+        } else {
+            $data = Customer::orderBy('name', 'asc')
+                                ->select('id', 'name', 'address', 'email')
+                                ->where('name', 'LIKE', "%{$search}%")
+                                ->limit(5)
+                                ->get();
+        }
+
+        $results = [];
         foreach($data as $d){
             $results[] = array(
                 'id' => $d->id,
-                'text' => $d->name
+                'text' => $d->name,
+                'address' => $d->address,
+                'email' => $d->email
             );
         }
         return response()->json($results);

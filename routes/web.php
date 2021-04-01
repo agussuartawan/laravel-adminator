@@ -22,7 +22,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
 //Customers
 Route::get('customers', 'CustomersController@index')->name('customer.index');
-Route::get('find/customer', 'CustomersController@find')->name('find.customer');
+Route::post('find/customer', 'CustomersController@find')->name('find.customer');
 
 //Products
 Route::get('product', 'ProductController@index')->name('product.index');

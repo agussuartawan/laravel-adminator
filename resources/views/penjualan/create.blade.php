@@ -7,7 +7,7 @@
 			<div class="col-4">
 				<div class="form-group mt-2">
 					<label class="label font-weight-bold">*Pelanggan</label>
-					<select class="js-example-basic-single form-control" id="pelanggan" name="customers_id">
+					<select class="form-control" id="pelanggan" name="customers_id">
 					  
 					</select>
 				</div>
@@ -15,7 +15,7 @@
 			<div class="col-2">
 				<div class="form-group mt-2">
 					<label class="label font-weight-bold">E-mail</label>
-					<input type="email" class="form-control" name="">
+					<input id="email" type="email" class="form-control" name="" readonly style="background-color: #fff;">
 				</div>
 			</div>
 			<div class="col-2"></div>
@@ -30,7 +30,7 @@
 			<div class="col-sm-4">
 				<div class="form-group">
 					<label class="label font-weight-bold">Alamat</label>
-					<textarea class="form-control"></textarea>
+					<textarea id="alamat" class="form-control" readonly style="background-color: #fff;"></textarea>
 				</div>
 			</div>
 
@@ -141,19 +141,23 @@
 		    });
 
 		    //seelct2 ajax untuk input pelanggan
-		    $('#pelanggan').select2({
+		    select_pelanggan();
+	    });
+
+  		//fungsi select2 untuk input pelanggan
+	    function select_pelanggan() {
+	    	$('#pelanggan').select2({
 		    	ajax: {
 		    		url: '{{ route("find.customer") }}',
 		    		dataType: 'json',
-		    		type: 'get',
-		    		delay: 250,
+		    		type: 'post',
+		    		delay: 100,
 		    		data: function(params){
 		    			return {
 		    				search: params.term
 		    			}
 		    		},
 		    		processResults: function(data){
-						console.log(data);
 		    			return {
 		    				results: data
 		    			}
@@ -162,8 +166,24 @@
 		    	},
 		    	placeholder: 'Cari pelanggan',
 		    	allowClear: true,
-				minimumInputLength: 1,
-		    });
-	    });
+		    	theme: "bootstrap4"
+
+		    }).on('select2:select', function(e) {
+		    	const val = e.params.data;
+		    	$('#alamat').text(val.address);
+		    	$('#email').val(val.email);
+
+		    }).on('select2:unselecting', function() {
+			    $(this).data('unselecting', true);
+			    $('#alamat').text('');
+		    	$('#email').val('');
+		    	
+			}).on('select2:opening', function(e) {
+			    if ($(this).data('unselecting')) {
+			        $(this).removeData('unselecting');
+			        e.preventDefault();
+			    }
+			});
+	    }
   	</script>
 @endpush
