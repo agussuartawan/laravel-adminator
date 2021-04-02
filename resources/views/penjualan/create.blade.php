@@ -35,14 +35,26 @@
 			</div>
 
 			<div class="col-sm-2">
-				<div class="form-group">
-					<label class="label font-weight-bold">*Tanggal</label>
-					<input class="form-control tgl" name="tanggal">
-				</div>
-				<div class="form-group">
-					<label class="label font-weight-bold">Jatuh tempo</label>
-					<input class="form-control tgl" name="overdue">
-				</div>
+				<div class="form-group">	
+					<label><strong>Tanggal</strong></label>
+	                <div class="input-group mb-3">
+	                    <div class="input-group-prepend">
+	                        <label class="input-group-text" id="basic-addon2" for="tanggal"><i class="fas fa-calendar-alt"></i></label>
+	                    </div>
+	                    <input id="tanggal" type="text" name="tanggal" class="form-control tgl" value="{{ date('Y-m-d') }}">
+	                </div>
+                </div>
+
+				<div class="form-group">	
+					<label><strong>Tanggal jatuh tempo</strong></label>
+	                <div class="input-group mb-3">
+	                    <div class="input-group-prepend">
+	                        <label class="input-group-text" id="basic-addon2" for="overdue"><i class="fas fa-calendar-alt"></i></label>
+	                    </div>
+	                    <input id="overdue" type="text" name="overdue" class="form-control tgl" value="{{ date('Y-m-d') }}">
+	                </div>
+                </div>
+
 				<div class="form-group">
 					<label class="label font-weight-bold">*Batas pembayaran</label>
 					<select class="js-example-basic-single form-control" id="terms" name="terms" width="50%">
@@ -67,41 +79,8 @@
 			<div class="col-sm-2"></div>
 		</div>
 
-		<table class="table table-striped" cellspacing="0" width="100%">
-			<thead>
-				<th>
-					<td width="30%">*Produk</td>
-					<td>Harga</td>
-					<td width="10%">Qty</td>
-					<td width="10%">Diskon</td>
-					<td>Jumlah</td>
-					<td></td>
-				</th>
-			</thead>
-			<tbody>
-				<tr>
-					<td></td>
-					<td>
-						<select class="js-example-basic-single form-control" id="produk" name="products_id">
-
-						</select>
-					</td>
-					<td>
-						<input type="text" class="form-control" name="">
-					</td>
-					<td>
-						<input type="text" class="form-control" name="">
-					</td>
-					<td>
-						<input type="text" class="form-control" name="">
-					</td>
-					<td>
-						<input type="text" class="form-control" name="">
-					</td>
-					<td><a href="#">-</a></td>
-				</tr>
-			</tbody>
-		</table>
+		@livewire('products')
+		
 		<hr>
 		<div class="row">
 			<div class="col-8"></div>
@@ -134,19 +113,25 @@
 @push('scripts')
   	<script type="text/javascript">
   		$(document).ready(function() {
+  			let row = 1;
+
 		    $('.tgl').datepicker({
 		          format: 'yyyy-mm-dd',
 		          autoclose: true,
 		          todayHighlight: true,
 		    });
 
-		    //seelct2 ajax untuk input pelanggan
+		    //memanggil methode select
 		    select_pelanggan();
+		    select_produk();
 	    });
 
   		//fungsi select2 untuk input pelanggan
 	    function select_pelanggan() {
 	    	$('#pelanggan').select2({
+	    		placeholder: 'Cari pelanggan',
+		    	allowClear: true,
+		    	theme: "bootstrap4",
 		    	ajax: {
 		    		url: '{{ route("find.customer") }}',
 		    		dataType: 'json',
@@ -163,10 +148,7 @@
 		    			}
 		    		},
 		    		cache: true
-		    	},
-		    	placeholder: 'Cari pelanggan',
-		    	allowClear: true,
-		    	theme: "bootstrap4"
+		    	}
 
 		    }).on('select2:select', function(e) {
 		    	const val = e.params.data;
@@ -177,7 +159,50 @@
 			    $(this).data('unselecting', true);
 			    $('#alamat').text('');
 		    	$('#email').val('');
-		    	
+
+			}).on('select2:opening', function(e) {
+			    if ($(this).data('unselecting')) {
+			        $(this).removeData('unselecting');
+			        e.preventDefault();
+			    }
+			});
+	    }
+
+	    //fungsi select2 untuk input produk
+	    function select_produk() {
+	    	let token = $('meta[name="csrf-token"]').attr('content');
+	    	$('#produk').select2({
+	    		placeholder: 'Cari produk',
+		    	allowClear: true,
+		    	theme: "bootstrap4",
+		    	minimumInputLength: 3,
+		    	ajax: {
+		    		url: '{{ route("find.product") }}',
+		    		dataType: 'json',
+		    		type: 'post',
+		    		delay: 100,
+		    		data: function(params){
+		    			return {
+		    				_token: token,
+		    				search: params.term
+		    			}
+		    		},
+		    		processResults: function(data){
+		    			return {
+		    				results: data
+		    			}
+		    		},
+		    		cache: true
+		    	}
+
+		    }).on('select2:select', function(e) {
+		    	const val = e.params.data;
+		    	$('#harga').val(val.price);
+
+		    }).on('select2:unselecting', function() {
+			    $(this).data('unselecting', true);
+		    	$('#harga').val('');
+
 			}).on('select2:opening', function(e) {
 			    if ($(this).data('unselecting')) {
 			        $(this).removeData('unselecting');

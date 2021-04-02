@@ -26,6 +26,7 @@ Route::post('find/customer', 'CustomersController@find')->name('find.customer');
 
 //Products
 Route::get('product', 'ProductController@index')->name('product.index');
+Route::post('find/product', 'ProductController@find')->name('find.product');
 
 //Transaction
 Route::get('penjualan', 'TransactionController@index')->name('penjualan.index');

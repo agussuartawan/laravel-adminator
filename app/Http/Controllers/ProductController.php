@@ -84,4 +84,29 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function find(Request $request)
+    {
+        $search = $request->search;
+        $data = Product::orderBy('nama', 'asc')
+                            ->select('id', 'nama', 'harga')
+                            ->where('nama', 'LIKE', "%{$search}%")
+                            ->limit(5)
+                            ->get();
+
+        $results = [];
+        foreach($data as $d){
+            $results[] = array(
+                'id' => $d->id,
+                'text' => $d->nama,
+                'price' => $d->harga
+            );
+        }
+        return response()->json($results);
+    }
+
+    public function form_product($row)
+    {
+        return view('penjualan.form_product', compact('row'));
+    }
 }
