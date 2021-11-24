@@ -29,73 +29,75 @@
         </div>
         <ul class="sidebar-menu scrollable pos-r ps">
             <li class="nav-item mT-30">
-                <a href="{{ route("admin.home") }}" class="sidebar-link">
+                <a href="{{ route('admin.home') }}" class="sidebar-link">
                     <span class="icon-holder">
                         <i class="nav-icon fas fa-fw fa-tachometer-alt"></i>
                     </span>
                     <span class="title">{{ trans('global.dashboard') }}</span>
                 </a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="#">
-                    <span class="icon-holder">
-                        <i class="fas fa-database"></i>
-                    </span>
-                    <span class="title">Master</span>
-                    <span class="arrow">
-                        <i class="ti-angle-right"></i>
-                    </span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="nav-item">
-                        <a href="{{ route('customer.index') }}" class="nav-link">
-                            <span class="icon-holder">
-                                <i class="nav-icon fas fa-user"></i>
-                            </span>
-                            <span class="title">Customer</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('product.index') }}" class="nav-link">
-                            <span class="icon-holder">
-                                <i class="fas fa-glass-martini-alt"></i>
-                            </span>
-                            <span class="title">Product</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="#">
-                    <span class="icon-holder">
-                        <i class="fas fa-shopping-cart"></i>
-                    </span>
-                    <span class="title">Penjualan</span>
-                    <span class="arrow">
-                        <i class="ti-angle-right"></i>
-                    </span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="nav-item">
-                        <a href="{{ route('penjualan.create') }}" class="nav-link">
-                            <span class="icon-holder">
-                                <i class="nav-icon fas fa-user"></i>
-                            </span>
-                            <span class="title">Transaksi</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('penjualan.index') }}" class="nav-link">
-                            <span class="icon-holder">
-                                <i class="fas fa-table"></i>
-                            </span>
-                            <span class="title">Data Penjualan</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            
+            @can('master_access')
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="#">
+                        <span class="icon-holder">
+                            <i class="fas fa-database"></i>
+                        </span>
+                        <span class="title">Master</span>
+                        <span class="arrow">
+                            <i class="ti-angle-right"></i>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('customer.index') }}" class="nav-link">
+                                <span class="icon-holder">
+                                    <i class="nav-icon fas fa-user"></i>
+                                </span>
+                                <span class="title">Customer</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('product.index') }}" class="nav-link">
+                                <span class="icon-holder">
+                                    <i class="fas fa-glass-martini-alt"></i>
+                                </span>
+                                <span class="title">Product</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
+            @can('transaction_access')
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="#">
+                        <span class="icon-holder">
+                            <i class="fas fa-shopping-cart"></i>
+                        </span>
+                        <span class="title">Penjualan</span>
+                        <span class="arrow">
+                            <i class="ti-angle-right"></i>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('penjualan.create') }}" class="nav-link">
+                                <span class="icon-holder">
+                                    <i class="nav-icon fas fa-user"></i>
+                                </span>
+                                <span class="title">Transaksi</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('penjualan.index') }}" class="nav-link">
+                                <span class="icon-holder">
+                                    <i class="fas fa-table"></i>
+                                </span>
+                                <span class="title">Data Penjualan</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
             @can('user_management_access')
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle" href="#">
@@ -110,7 +112,8 @@
                     <ul class="dropdown-menu">
                         @can('permission_access')
                             <li>
-                                <a href="{{ route("admin.permissions.index") }}" class="sidebar-link {{ request()->is('admin/permissions')  ? 'active' : '' }}">
+                                <a href="{{ route('admin.permissions.index') }}"
+                                    class="sidebar-link {{ request()->is('admin/permissions') ? 'active' : '' }}">
                                     <i class="fa-fw fas fa-unlock-alt nav-icon">
 
                                     </i>
@@ -120,7 +123,8 @@
                         @endcan
                         @can('role_access')
                             <li>
-                                <a href="{{ route("admin.roles.index") }}" class="sidebar-link {{ request()->is('admin/roles')  ? 'active' : '' }}">
+                                <a href="{{ route('admin.roles.index') }}"
+                                    class="sidebar-link {{ request()->is('admin/roles') ? 'active' : '' }}">
                                     <i class="fa-fw fas fa-briefcase nav-icon">
 
                                     </i>
@@ -130,7 +134,8 @@
                         @endcan
                         @can('user_access')
                             <li>
-                                <a href="{{ route("admin.users.index") }}" class="sidebar-link {{ request()->is('admin/users')  ? 'active' : '' }}">
+                                <a href="{{ route('admin.users.index') }}"
+                                    class="sidebar-link {{ request()->is('admin/users') ? 'active' : '' }}">
                                     <i class="fa-fw fas fa-user nav-icon">
 
                                     </i>
@@ -143,7 +148,8 @@
             @endcan
 
             <li class="nav-item">
-                <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                <a href="#" class="nav-link"
+                    onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                     <span class="icon-holder">
                         <i class="nav-icon fas fa-fw fa-sign-out-alt"></i>
                     </span>
